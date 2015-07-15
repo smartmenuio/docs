@@ -1,0 +1,1347 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Smartmenu.io - API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell","php","ruby"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="php">php</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://my.smartmenu.io/swagger/'>Test the API in Swagger </a></li>
+            <li><a href='http://restunited.com/docs/5blsoeb1bwhd'>Download API SDKs 2.0.2</a></li>
+            <li><a href='http://creativecommons.org/licenses/by-sa/4.0/'>Licensed under (CC BY-SA 4.0) </a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<pre class="highlight plaintext"><code>  ______ _______ _______ ______ _______ _______ _______ _______ _     _ 
+ / _____|_______|_______|_____ (_______|_______|_______|_______|_)   (_)
+( (____  _  _  _ _______ _____) )  _    _  _  _ _____   _     _ _     _ 
+ \____ \| ||_|| |  ___  |  __  /  | |  | ||_|| |  ___) | |   | | |   | |
+ _____) ) |   | | |   | | |  \ \  | |  | |   | | |_____| |   | | |___| |
+(______/|_|   |_|_|   |_|_|   |_| |_|  |_|   |_|_______)_|   |_|\_____/ 
+
+</code></pre>
+
+<blockquote>
+<p>This pane will show example API queries and responses but you can test each one using swagger.</p>
+</blockquote>
+<pre class="highlight plaintext"><code>     _______.____    __    ____  ___       _______   _______  _______ .______      
+    /       |\   \  /  \  /   / /   \     /  _____| /  _____||   ____||   _  \     
+   |   (----` \   \/    \/   / /  ^  \   |  |  __  |  |  __  |  |__   |  |_)  |    
+    \   \      \            / /  /_\  \  |  | |_ | |  | |_ | |   __|  |      /     
+.----)   |      \    /\    / /  _____  \ |  |__| | |  |__| | |  |____ |  |\  \----.
+|_______/        \__/  \__/ /__/     \__\ \______|  \______| |_______|| _| `._____|
+</code></pre>
+
+<p>Welcome to the Smartmenu.io API documentation! This is the API used by the official <a href="https://my.smartmenu.io">Smartmenu.io</a> web interface. 
+Most of the things available on there can also be accomplished via the API.</p>
+
+<p>Currently we have examples in Shell using <code class="prettyprint">curl</code>! You can view code examples in the dark area to the right.</p>
+
+<p>This documentation applies solely to the <strong>version 2</strong> of the API.</p>
+
+<h3 id="testing-it-out">Testing it out</h3>
+
+<p>You can try out each and every request yourself! Just head to our <strong><a href="https://my.smartmenu.io/swagger/">Swagger</a></strong> tool.</p>
+
+<p>You&rsquo;ll need to be logged in to perform most requests. It&rsquo;s recommended that you log in to Smartmenu by using the <em>Keep me signed in</em> option. 
+This way your login token will persist for 30 days. </p>
+
+<p>Each documented entity will have link to their respective counterpart in swagger so that you can quickly access it.</p>
+
+<aside class="warning">
+Be careful when using Swagger! Most actions cannot be reversed! We suggest you create a separate account just for testing.
+</aside>
+
+<h3 id="sdks">SDKs</h3>
+
+<p>We have SDKs in several programming languages:</p>
+
+<ul>
+<li>PHP</li>
+<li>Java</li>
+<li>Ruby</li>
+<li>Python v2</li>
+<li>Android</li>
+<li>C#</li>
+<li>Objective-C</li>
+</ul>
+
+<p>You can find the SDK documentation and even more sample code <strong><a href="http://restunited.com/docs/5blsoeb1bwhd">here</a></strong></p>
+
+<p>The SDKs are currently in Beta and are maintained by RestUnited.</p>
+
+<h1 id="entry-points">Entry Points</h1>
+
+<blockquote>
+<p>you can use both <code class="prettyprint">https://my.smartmenu.io/api/v2</code> and <code class="prettyprint">https://customers-domain.smartmenu.io/api/v2</code> to query the API.</p>
+</blockquote>
+
+<p>The entry point for the API is:</p>
+
+<p><code class="prettyprint">https://my.smartmenu.io/api/v2</code></p>
+
+<p>In order to achieve a full <em>RESTful</em> compliance, each <strong>Smartmenu</strong> business has a different subdomain that can be additionally used to query the API. 
+A business with a domain name <code class="prettyprint">bobsburgers</code> will also have the following API entry point:</p>
+
+<p><code class="prettyprint">https://bobsburgers.smartmenu.io/api/v2</code></p>
+
+<h1 id="obtaining-api-keys">Obtaining API Keys</h1>
+
+<h2 id="integration-hub">Integration Hub</h2>
+
+<blockquote>
+<p>Once your user inputs an <code class="prettyprint">activation_code</code> you can retrieve the API key:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://my.smartmenu.io/api/v2/activate/device"</span> <span class="se">\</span>
+  --request POST <span class="se">\</span>
+  --data <span class="s1">'{"activation_code":THE-ACTIVATION-CODE-PROVIDED-BY-THE-USER}'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept-Charset: utf-8'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+<pre class="highlight php"><code>// initialize the API client
+$api_client = new Smartmenu\APIClient('https://my.smartmenu.io');
+
+$activationCode = "sampleActivationCode";  // The activation code. 
+
+try {
+    $web_api = new Smartmenu\WebAPI($api_client);
+    // return Token (model)
+    $response = $web_api-&gt;getApiKey($activationCode);
+    print_r($response);
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e-&gt;getMessage(), "\n";
+}
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">activation_code</span> <span class="o">=</span> <span class="s2">"sample_activation_code"</span>  <span class="c1"># The activation code. </span>
+
+<span class="k">begin</span>
+  <span class="c1"># return Token (model)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">WebAPI</span><span class="p">.</span><span class="nf">get_api_key</span><span class="p">(</span><span class="n">activation_code</span><span class="p">)</span>
+  <span class="nb">p</span> <span class="n">response</span>
+<span class="k">rescue</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">HTTPError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="s2">"Failed to call API! Error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response code: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">code</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response headers: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">headers</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response body: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">body</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns a JSON with the API Key (token):</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"smartmenu.signed.token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>To create a better experience for our users we created an <a href="https://my.smartmenu.io/mgmt/integrations/overview">Integrations hub</a> 
+where they can easily connect <strong>Smartmenu</strong> with other systems without the need for generating or mentioning the concept of API Keys to them.</p>
+
+<p>This is very useful for transparently integrating devices such as tablets, terminals, cash registers and various mobile apps.</p>
+
+<p>This would enable your users to integrate <strong>Smartmenu</strong> with your system by generating a temporary <code class="prettyprint">activation code</code>.
+This code can then be typed or scanned in your app so your system can retrieve the actual API Key.</p>
+
+<p>Once you&rsquo;ve retrieved the API Key you can then store it in your system and use it for subsequent requests. 
+Please note that different businesses have different keys, so an API key provided by one business won&rsquo;t work with another business.</p>
+
+<aside class="notice">
+Make sure you store API Keys safely in your database. Do not publish or share them with anybody.
+</aside>
+
+<h3 id="example-integration-scenario">Example Integration Scenario</h3>
+
+<p>Consider we have a business owner called <strong>Bob</strong>. 
+Bob has just opened a burger joint down the street called &ldquo;Bob&rsquo;s Burgers&rdquo; and he uses <strong>Smartmenu</strong> to manage his menus.
+Integrating other devices or apps would look something like this:</p>
+
+<ol>
+<li>Bob wants to connect a device such as a POS to <strong>Smartmenu</strong> so that he can synchronise his products on the menu.</li>
+<li>Bob proceeds to the <em>Integrations Hub</em> on <strong>Smartmenu</strong> to create the respective integration. </li>
+<li>The Integration Hub then generates an activation code and prompts Bob to input the code in the respective system.</li>
+<li>Bob manually inputs the code in the app (or scans the code with the mobile device). </li>
+<li>The app gets the API Keys with the activation token and stores it for future use.</li>
+<li>The integration is complete and Bob is informed about it in the <strong>Smartmenu</strong> Integrations hub.</li>
+</ol>
+
+<p>We&rsquo;d be more than happy to integrate and feature your app in <strong>Smartmenu</strong> - just drop us a line.</p>
+
+<h2 id="blacklisting-keys">Blacklisting keys</h2>
+
+<p>If one or more of the API Keys becomes exposed you must blacklist them in <strong>Smartmenu</strong>. 
+Be sure to inform your users about it so that they can disable the respective Integrations in the hub.
+This will mark the tokens as invalid and will disable the API access until a new integration is performed.</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p>To authorize, pass the token in the <code class="prettyprint">Authorization</code> header:</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># you must pass the correct header with each request</span>
+curl <span class="s2">"https://bobsburgers.smartmenu.io/api/v2/status"</span>
+  -H <span class="s2">"Authorization: smartmenu.signed.token"</span>
+</code></pre>
+<pre class="highlight php"><code>// initialize the API client
+$api_client = new Smartmenu\APIClient('https://my.smartmenu.io');
+// authentication setting using api key/token
+$api_client-&gt;apiKey = 'YOUR_API_KEY';
+// you can now make queries with $api_client
+</code></pre>
+<pre class="highlight ruby"><code><span class="c1"># authentication setting using api key/token</span>
+<span class="no">Smartmenu</span><span class="o">::</span><span class="no">Swagger</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">api_key</span> <span class="o">=</span> <span class="s1">'YOUR_API_KEY'</span>
+<span class="k">end</span>
+<span class="c1"># you can now perform queries</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">smartmenu.signed.token</code> with your user&rsquo;s API key.<br>
+Alternatively you can pass the token as a parameter:</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># you should **not** pass the API Key as a URL parameter (bad!)</span>
+curl <span class="s2">"https://bobsburgers.smartmenu.io/api/v2/status?token=smartmenu.signed.token"</span>
+<span class="c"># but rather pass it as data (ok!)</span>
+curl <span class="s2">"https://bobsburgers.smartmenu.io/api/v2/status"</span>
+  -d <span class="s2">"token=smartmenu.signed.token"</span>
+</code></pre>
+
+<h3 id="authorization-header">Authorization Header</h3>
+
+<p>You can pass the API Key with each request in the <code class="prettyprint">Authorization</code> header. </p>
+
+<p><code class="prettyprint">Authorization: smartmenu.signed.token</code></p>
+
+<aside class="notice">
+You must replace <code>smartmenu.signed.token</code> with the API key.
+</aside>
+
+<h3 id="token-url-parameter">Token URL parameter</h3>
+
+<p>Alternatively you can pass the API Key as a parameter in the <code class="prettyprint">token</code> field.</p>
+
+<p>Passing the API Key as a parameter is not recommended as URL parameters could be logged by servers or proxies and may become exposed. 
+Consider using the <code class="prettyprint">Authorization</code> header whenever possible. </p>
+
+<h3 id="json-web-token">JSON Web Token</h3>
+
+<p>The API Key is a <strong>signed</strong> <a href="http://jwt.io/">JSON Web Token</a> which does not contain any user sensitive data in its payload.
+However you can extract the token&rsquo;s payload to determine the user&rsquo;s <code class="prettyprint">domain</code>. </p>
+
+<aside class="notice">
+Each Smartmenu business (user) has a different API key. Make sure you use the corresponding key when making requests. 
+</aside>
+
+<h1 id="making-requests">Making Requests</h1>
+
+<p>As per RESTful design patterns, the <strong>Smartmenu</strong> API implements the following HTTP methods:</p>
+
+<ul>
+<li><strong><code class="prettyprint">GET</code></strong> - Read resources</li>
+<li><strong><code class="prettyprint">POST</code></strong> - Create new resources</li>
+<li><strong><code class="prettyprint">PUT</code></strong> - Modify existing resources</li>
+<li><strong><code class="prettyprint">DELETE</code></strong> - Remove resources</li>
+<li><strong><code class="prettyprint">HEAD</code></strong> - Perform a HEAD request </li>
+</ul>
+
+<p>When making requests, arguments can be passed as params, form data or JSON with correct <code class="prettyprint">Content-Type</code> header.</p>
+
+<p>Each response is <code class="prettyprint">application/json</code> and it&rsquo;s encoded in <code class="prettyprint">UTF-8</code></p>
+
+<h2 id="https">HTTPS</h2>
+
+<blockquote>
+<p>A happy request is a valid <code class="prettyprint">HTTPS</code> request.</p>
+</blockquote>
+
+<p>All requests must be made over <code class="prettyprint">HTTPS</code>. Any <code class="prettyprint">HTTP</code> requests are met with a HTTP <code class="prettyprint">302 Found</code> to its HTTPS equivalent.</p>
+
+<h2 id="languages">Languages</h2>
+
+<blockquote>
+<p>This will get the english version of a product:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl /api/v1/products/33 <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept-Language: en'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+
+<blockquote>
+<p>This will update the <strong>french</strong> <em>name</em> and subtitle of a product. Every other field will remain unchanged:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl /api/v1/products/25 <span class="se">\</span>
+  --request PUT <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept-Language: fr'</span> <span class="se">\</span>
+  --data <span class="s1">'{"subtitle":"Tomates multicolores, sélection du chef","name":"DECLINAISON DE TOMATES"}'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+
+<blockquote>
+<p>Some entities such as products have <code class="prettyprint">i18n</code> fields:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chocolate Cream"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"i18n_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chocolate Cream"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Schokocreme"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Some businesses manage their menus in more than one language. When making requests to create or update products, categories, and menus 
+the default language set by the business owner is used, so there&rsquo;s no need to adjust anything. </p>
+
+<h3 id="setting-the-language">Setting the language</h3>
+
+<p>If However you want to edit resources in a different language you can pass the <code class="prettyprint">Accept-Language</code> header or <code class="prettyprint">lang=xx</code> as a parameter.
+Smartmenu uses two-letter <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO 639-1</a> codes for each language. Some examples include 
+<code class="prettyprint">en</code> for English, <code class="prettyprint">de</code> for German, <code class="prettyprint">fr</code> for French, <code class="prettyprint">es</code> for Spanish and <code class="prettyprint">it</code> for Italian.</p>
+
+<h3 id="using-the-lang-parameter">Using the <code class="prettyprint">lang</code> parameter</h3>
+
+<p>The <code class="prettyprint">lang</code> parameter takes precedence over the <code class="prettyprint">Accept-Language</code> so if both of them are passed the <code class="prettyprint">lang</code> parameter will be applied
+and the header value will be ignored. </p>
+
+<h3 id="locale-and-country">Locale and country</h3>
+
+<p>Language codes with region such as <code class="prettyprint">en-US</code> or <code class="prettyprint">de-DE</code> are stripped down to their language code. Making a request with 
+<code class="prettyprint">Accept-Language: en-GB</code> will be treated as <code class="prettyprint">en</code>. </p>
+
+<h3 id="entities-using-more-than-one-language">Entities using more than one language</h3>
+
+<p>Each multilingual field is marked as such in this documentation. </p>
+
+<ul>
+<li><code class="prettyprint">Product</code>: name, subtitle, description, information </li>
+<li><code class="prettyprint">Menu</code>: name, description</li>
+<li><code class="prettyprint">Category</code>: name, description</li>
+</ul>
+
+<h3 id="i18n-hashes">i18n hashes</h3>
+
+<p>In addition to the normal response most entities contain <code class="prettyprint">i18n</code> fields encompassing all available languages. </p>
+
+<p>This is useful if you want to display multilingual content in your app. 
+This way for example you don&rsquo;t need to retrieve the products for each language - you can simply switch languages on the fly.</p>
+
+<h2 id="etags-and-caching">ETags and caching</h2>
+<pre class="highlight shell"><code>curl /api/v1/products/23 <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'ETag: 000b19131cf99d00ec98fe0065a81fc6'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+
+<blockquote>
+<p>This request will result in an empty <code class="prettyprint">304 Not Modified</code> response if the product has not changed or a <code class="prettyprint">200 OK</code> response with the product.  </p>
+</blockquote>
+
+<p>Each response contains an <code class="prettyprint">ETag</code> header. It is highly recommended to pass a <code class="prettyprint">If-None-Match</code> header with your request
+so as to save resources and bandwidth. After all, faster response times means better user experience.</p>
+
+<p>Apart from performing <code class="prettyprint">conditional GET</code>s you can also perform <code class="prettyprint">HEAD</code> requests to check for any changes.</p>
+
+<p>ETags are different for each language and take into account the usage of the <code class="prettyprint">Accept-Language</code> header or <code class="prettyprint">lang</code> parameters. 
+Proxies and caches should take the <code class="prettyprint">Vary</code> header into account which also lists <code class="prettyprint">Accept-Language</code>.</p>
+
+<p>Requests with <code class="prettyprint">If-Match</code> are currently not supported.</p>
+
+<p>To learn more about ETags and conditional GETs please visit the <a href="https://en.wikipedia.org/wiki/HTTP_ETag#Typical_usage">Wikipedia Article</a></p>
+
+<h2 id="rate-limits-and-throttling">Rate-Limits and throttling</h2>
+
+<blockquote>
+<p>When exceeding the rate limit you&rsquo;ll get a <code class="prettyprint">429</code> Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TooManyRequestsError"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">429</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You have sent too many requests. Please enhance your calm."</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>There is a rate limit of <strong>1000 requests per hour</strong> for each API key after which every request will be met with a <code class="prettyprint">429 Too Many Requests</code> response.
+The rate limit is reset every 60 minutes. There are certain headers with each request that can help you track your limit:</p>
+
+<table><thead>
+<tr>
+<th>header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">X-RateLimit-Limit</code></td>
+<td>The total number of requests allowed in 60 minutes.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">X-RateLimit-Remaining</code></td>
+<td>The number of remaining requests for the next 60 minutes</td>
+</tr>
+</tbody></table>
+
+<h2 id="fields">Fields</h2>
+
+<blockquote>
+<p>This will get only a nice list of all products instead of a full-blown JSON</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://my.smartmenu.io/api/v2/products/list"</span>
+  -H <span class="s2">"Authorization: smartmenu.signed.token"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kartofelsuppe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"i18n_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kartofelsuppe"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.5"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spargelsuppe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"i18n_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spargelsuppe"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.5"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="ids-and-references">IDs and references
+<p>Every <code class="prettyprint">ID</code> for an object is a unique, positive integer with a <code class="prettyprint">bigint</code> range.<br>
+That means that no two businesses can share the same product IDs or menus IDs; these values and references are unique to each business.</p>
+
+<h3 id="timestamps">Timestamps</h3>
+
+<p>All timestamp are returned in <code class="prettyprint">ISO8601</code> format in <code class="prettyprint">UTC</code> with fields beginning with <code class="prettyprint">t_</code>. </p>
+
+<p>Example: <code class="prettyprint">&quot;t_created&quot;: &quot;2015-05-12T01:04:38Z&quot;</code></p>
+
+<h3 id="urls">URLs
+<p>Every URL includes an absolute path beginning with <code class="prettyprint">http://</code> or <code class="prettyprint">https://</code>. There are no relative paths.</p>
+
+<p>Example: <code class="prettyprint">&quot;image_big_url&quot;: &quot;https://media.smartmenu.io/images/some_image.jpg&quot;</code></p>
+
+<h3 id="lists">Lists</h3>
+
+<p>Most of the entities have a compact list view that is smaller and very useful when displaying lists.
+Consider using those when caching is not available.</p>
+
+<p>Examples:</p>
+
+<ul>
+<li><code class="prettyprint">GET</code> on <code class="prettyprint">api/v2/products/list</code></li>
+<li><code class="prettyprint">GET</code> on <code class="prettyprint">api/v2/categories/list</code></li>
+</ul>
+
+<h3 id="prices">Prices</h3>
+
+<p><strong>Prices are handled as an Integer in Cents.</strong><br>
+This is because each language uses different precision and data types to store floating point numbers (BigDecimal, Numeric, double, float) and floats and doubles cannot accurately represent a currency.
+You&rsquo;ll need to parse the price into an appropriate datatype for you. </p>
+
+          <h1 id="products">Products</h1>
+
+<p>A product is the core element in the menu - it represents a dish, drink or maybe a bottle of wine. Products can be grouped into <code class="prettyprint">categories</code> and <code class="prettyprint">menus</code> or they can exist standalone. Products are generally referenced by their ID, however there&rsquo;s also a <code class="prettyprint">product_code</code> available which can be used to synchronise and modify the product by an external service, such as a POS or a delivery service. Each <code class="prettyprint">product</code> can further be tagged with <code class="prettyprint">tags</code> describing it, such as <em>vegetarian</em> or <em>spicy</em>. Similarly <code class="prettyprint">allergies</code> are also available.</p>
+
+<p><strong>Prices are handled as an Integer in cents.</strong><br>
+This is because each language uses different precision and data types to store floating point numbers (BigDecimal, Numeric, double, float) and floats and doubles cannot accurately represent a currency.
+You&rsquo;ll need to parse the price into an appropriate datatype for you. </p>
+
+<h2 id="get-a-short-list-of-all-the-products">Get a short list of all the Products</h2>
+<pre class="highlight shell"><code>curl https://my.smartmenu.io/api/v2/products/list <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept: application/json; charset=utf-8'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+<pre class="highlight php"><code>try {
+    $web_api = new Smartmenu\WebAPI($api_client);
+    // return Array of ProductList (model)
+    $response = $web_api-&gt;getProductsList();
+    print_r($response);
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e-&gt;getMessage(), "\n";
+}
+</code></pre>
+<pre class="highlight ruby"><code><span class="k">begin</span>
+  <span class="c1"># return Array of ProductList (model)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">WebAPI</span><span class="p">.</span><span class="nf">get_products_list</span><span class="p">()</span>
+  <span class="nb">p</span> <span class="n">response</span>
+<span class="k">rescue</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">HTTPError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="s2">"Failed to call API! Error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response code: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">code</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response headers: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">headers</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response body: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">body</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"German Potato Soup"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"i18n_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"German Potato Soup"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kartoffelsuppe"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">550</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"allergy_codes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A, C, G"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Get a nice list representation of all the products for the current business. Consider using this query when showing the list of products.</p>
+
+<h3 id="try-it-out-in-swagger">Try it out in Swagger:</h3>
+
+<p><a href="https://my.smartmenu.io/swagger/#!/products/getProductsList"><code class="prettyprint">GET https://my.smartmenu.io/api/v2/products/list</code></a></p>
+
+<h3 id="code-examples">Code examples:</h3>
+
+<p><a href="http://restunited.com/docs/5blsoeb1bwhd#httpmethod_Web_getProductsList"><code class="prettyprint">GET https://my.smartmenu.io/api/v2/products/list</code></a></p>
+
+<h2 id="get-an-extended-list-of-all-the-products">Get an extended list of all the Products</h2>
+<pre class="highlight shell"><code>curl https://my.smartmenu.io/api/v2/products/list <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept: application/json; charset=utf-8'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+<pre class="highlight php"><code>try {
+    $web_api = new Smartmenu\WebAPI($api_client);
+    // return Array of Product (model)
+    $response = $web_api-&gt;getProducts();
+    print_r($response);
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e-&gt;getMessage(), "\n";
+}
+</code></pre>
+<pre class="highlight ruby"><code><span class="k">begin</span>
+  <span class="c1"># return Array of Product (model)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">WebAPI</span><span class="p">.</span><span class="nf">get_products</span><span class="p">()</span>
+  <span class="nb">p</span> <span class="n">response</span>
+<span class="k">rescue</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">HTTPError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="s2">"Failed to call API! Error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response code: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">code</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response headers: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">headers</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response body: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">body</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"German Potato Soup"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some more info and description."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"With fresh basil leaves and a pinch of curry."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"information"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Containing the best natural ingredients this soup will make your arms look like diamonds!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"i18n_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"German Potato Soup"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"i18n_description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some more info and description."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"i18n_subtitle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"With fresh basil leaves and a pinch of curry."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"i18n_information"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Containing the best natural ingredients this soup will make your arms look like diamonds!"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"t_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-15T16:06:26Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"t_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-15T16:06:26Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"product_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P90X3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">550</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_big_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.smartmenu.io/images/todorsburgers_product_image_big_default.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_tile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.smartmenu.io/images/todorsburgers_product_image_tile_default.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_info_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.smartmenu.io/images/todorsburgers_product_image_info_default.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spicy"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spicy dish"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sesame seed"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sesame seed"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"allergy_codes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Get a full representation of <strong>all</strong> the products for the current business. <strong>Use sparsely</strong>. 
+Although this entity is always cached on our side this representation will cost you greater loading and processing times.  </p>
+
+<h3 id="try-it-out-in-swagger">Try it out in Swagger:</h3>
+
+<p><a href="https://my.smartmenu.io/swagger/#!/products/getProducts"><code class="prettyprint">GET https://my.smartmenu.io/api/v2/products</code></a></p>
+
+<h3 id="code-examples">Code examples:</h3>
+
+<p><a href="http://restunited.com/docs/5blsoeb1bwhd#httpmethod_Web_getProducts"><code class="prettyprint">GET https://my.smartmenu.io/api/v2/products</code></a></p>
+
+<h2 id="create-a-new-product">Create a new Product</h2>
+
+<blockquote>
+<p>Create a new product with a price, name and description:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl /api/v2/products <span class="se">\</span>
+  --request POST <span class="se">\</span>
+  --data <span class="s1">'{"description":"Popeye edition.","name":"German Spinach Soup","price":950}'</span> <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept: application/json; charset=utf-8'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+<pre class="highlight php"><code>// initialize the API client
+$api_client = new Smartmenu\APIClient('https://my.smartmenu.io');
+// authentication setting using api key/token
+$api_client-&gt;apiKey = 'YOUR_API_KEY';
+
+$name = "German Spinach Soup";  // A name for this product. Max. 254 characters. 
+$price = 950;  // The price in cents. 
+$description = "Popeye edition.";  // A detailed description. Max 1000 characters. 
+
+try {
+    $web_api = new Smartmenu\WebAPI($api_client);
+    // return Product (model)
+    $response = $web_api-&gt;addProduct($name, $price, $description);
+    print_r($response);
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e-&gt;getMessage(), "\n";
+}
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">name</span> <span class="o">=</span> <span class="s2">"German Spinach Soup"</span>  <span class="c1"># A name for this product. Max. 254 characters. </span>
+<span class="n">price</span> <span class="o">=</span> <span class="mi">950</span>  <span class="c1"># The price in cents. </span>
+
+<span class="k">begin</span>
+  <span class="c1"># return Product (model)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">WebAPI</span><span class="p">.</span><span class="nf">add_product</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="s2">"Popeye edition."</span><span class="p">)</span>
+  <span class="nb">p</span> <span class="n">response</span>
+<span class="k">rescue</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">HTTPError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="s2">"Failed to call API! Error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response code: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">code</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response headers: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">headers</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response body: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">body</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>This will create the product:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"German Spinach Soup"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Popeye edition."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"information"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"i18n_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"German Spinach Soup"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"i18n_description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Popeye edition."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"i18n_subtitle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"i18n_information"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"t_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-15T16:06:26Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"t_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-15T16:06:26Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"product_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">950</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_big_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.smartmenu.io/images/todorsburgers_product_image_big_default.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_tile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.smartmenu.io/images/todorsburgers_product_image_tile_default.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_info_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.smartmenu.io/images/todorsburgers_product_image_info_default.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"allergy_codes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Create a new product for the current business.</p>
+
+<h3 id="try-it-out-in-swagger">Try it out in Swagger:</h3>
+
+<p><a href="https://my.smartmenu.io/swagger/#!/products/addProduct"><code class="prettyprint">POST https://my.smartmenu.io/api/v2/products</code></a></p>
+
+<h3 id="code-examples">Code examples:</h3>
+
+<p><a href="http://restunited.com/docs/5blsoeb1bwhd#httpmethod_Web_addProduct"><code class="prettyprint">POST https://my.smartmenu.io/api/v2/products/</code></a></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">*</td>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">A name for this product. Max. 254 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center">*</td>
+<td style="text-align: left">price</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">The price in cents.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">allergy_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the Allergies this product has been tagged with (comma separated).</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">category_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the categories this product belongs to (comma separated).</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">description</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">A detailed description. Max 1000 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">information</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">More information about the product such as nutrition information or origin, max. 1000 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">menu_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the menus this product/category belongs to (comma separated).</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">product_code</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The product code. Max 254 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">subtitle</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">A nice subtitle for this product, max. 254 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">tag_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the Tags this product has been tagged with (comma separated).</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">visible</td>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">Controls the visibility</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-product-by-its-id">Get a Product by its ID</h2>
+<pre class="highlight shell"><code>curl /api/v2/products/71 <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept: application/json; charset=utf-8'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+<pre class="highlight php"><code>$id = 71;  // The ID. 
+
+try {
+    $web_api = new Smartmenu\WebAPI($api_client);
+    // return Product (model)
+    $response = $web_api-&gt;getProduct($id);
+    print_r($response);
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e-&gt;getMessage(), "\n";
+}
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">id</span> <span class="o">=</span> <span class="mi">71</span> <span class="c1"># The ID. </span>
+
+<span class="k">begin</span>
+  <span class="c1"># return Product (model)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">WebAPI</span><span class="p">.</span><span class="nf">get_product</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+  <span class="nb">p</span> <span class="n">response</span>
+<span class="k">rescue</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">HTTPError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="s2">"Failed to call API! Error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response code: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">code</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response headers: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">headers</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response body: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">body</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"German Potato Soup"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some more info and description."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"With fresh basil leaves and a pinch of curry."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"information"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Containing the best natural ingredients this soup will make your arms look like diamonds!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"i18n_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"German Potato Soup"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">[...]</span><span class="w">
+    </span><span class="nt">"allergy_codes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Get a product for the current business.</p>
+
+<h3 id="try-it-out-in-swagger">Try it out in Swagger:</h3>
+
+<p><a href="https://my.smartmenu.io/swagger/#!/products/getProduct"><code class="prettyprint">GET https://my.smartmenu.io/api/v2/products/:id</code></a></p>
+
+<h3 id="code-examples">Code examples:</h3>
+
+<p><a href="http://restunited.com/docs/5blsoeb1bwhd#httpmethod_Web_getProduct"><code class="prettyprint">GET https://my.smartmenu.io/api/v2/products/:id</code></a></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">*</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">The ID.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-product-by-its-id">Update a Product by its ID</h2>
+
+<blockquote>
+<p>Change just the name, description and price of a product:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl /api/v2/products/71 <span class="se">\</span>
+  --request PUT <span class="se">\</span>
+  --data <span class="s1">'{"description":"Corrected info and description.","name":"Another German Potato Soup","price":950}'</span> <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept: application/json; charset=utf-8'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+<pre class="highlight php"><code>$id = @@26;  // The ID. 
+$name = "Another German Potato Soup";  // A name for this product. Max. 254 characters. 
+$price = 950;  // The price in cents. 
+$description = "Corrected info and description.";  // A detailed description. Max 1000 characters. 
+
+try {
+    $web_api = new Smartmenu\WebAPI($api_client);
+    // return Product (model)
+    $response = $web_api-&gt;updateProduct($id, $name, $price, $description);
+    print_r($response);
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e-&gt;getMessage(), "\n";
+}
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">id</span> <span class="o">=</span> <span class="mi">71</span>  <span class="c1"># The ID. </span>
+
+<span class="k">begin</span>
+  <span class="c1"># return Product (model)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">WebAPI</span><span class="p">.</span><span class="nf">update_product</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Another German Potato Soup"</span><span class="p">,</span> <span class="ss">:price</span> <span class="o">=&gt;</span> <span class="mi">950</span><span class="p">,</span> <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="s2">"Corrected info and description."</span><span class="p">)</span>
+  <span class="nb">p</span> <span class="n">response</span>
+<span class="k">rescue</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">HTTPError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="s2">"Failed to call API! Error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response code: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">code</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response headers: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">headers</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response body: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">body</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>This will only change the name, price and description:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another German Potato Soup"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corrected info and description."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"With fresh basil leaves and a pinch of curry."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"information"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Containing the best natural ingredients this soup will make your arms look like diamonds!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"i18n_name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another German Potato Soup"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"i18n_description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corrected info and description."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"i18n_subtitle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"With fresh basil leaves and a pinch of curry."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"i18n_information"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Containing the best natural ingredients this soup will make your arms look like diamonds!"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"t_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-15T16:06:26Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"t_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-15T16:06:26Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"product_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P90X3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">950</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_big_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.smartmenu.io/images/todorsburgers_product_image_big_default.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_tile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.smartmenu.io/images/todorsburgers_product_image_tile_default.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_info_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.smartmenu.io/images/todorsburgers_product_image_info_default.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"allergy_codes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Change a product for the current business.</p>
+
+<h3 id="try-it-out-in-swagger">Try it out in Swagger:</h3>
+
+<p><a href="https://my.smartmenu.io/swagger/#!/products/updateProduct"><code class="prettyprint">PUT https://my.smartmenu.io/api/v2/products/:id</code></a></p>
+
+<h3 id="code-examples">Code examples:</h3>
+
+<p><a href="http://restunited.com/docs/5blsoeb1bwhd#httpmethod_Web_updateProduct"><code class="prettyprint">PUT https://my.smartmenu.io/api/v2/products/:id</code></a></p>
+
+<h3 id="url-parameters">URL Parameters
+<table><thead>
+<tr>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">*</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">The ID.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">allergy_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the Allergies this product has been tagged with (comma separated).</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">category_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the categories this product belongs to (comma separated).</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">description</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">A detailed description. Max 1000 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">information</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">More information about the product such as nutrition information or origin, max. 1000 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">menu_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the menus this product/category belongs to (comma separated).</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">A name for this product. Max. 254 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">price</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">The price in cents.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">product_code</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The product code. Max 254 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">subtitle</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">A nice subtitle for this product, max. 254 characters.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">tag_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the Tags this product has been tagged with (comma separated).</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">visible</td>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">Controls the visibility</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-a-product">Delete a Product</h2>
+<pre class="highlight shell"><code>curl /api/v2/products/34 <span class="se">\</span>
+  --request DELETE <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept: application/json; charset=utf-8'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+<pre class="highlight php"><code>$id = 34;  // The ID. 
+
+try {
+    $web_api = new Smartmenu\WebAPI($api_client);
+    // return Success (model)
+    $response = $web_api-&gt;deleteProduct($id);
+    print_r($response);
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e-&gt;getMessage(), "\n";
+}
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">id</span> <span class="o">=</span> <span class="mi">34</span>  <span class="c1"># The ID. </span>
+
+<span class="k">begin</span>
+  <span class="c1"># return Success (model)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">WebAPI</span><span class="p">.</span><span class="nf">delete_product</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+  <span class="nb">p</span> <span class="n">response</span>
+<span class="k">rescue</span> <span class="no">Smartmenu</span><span class="o">::</span><span class="no">HTTPError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="s2">"Failed to call API! Error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response code: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">code</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response headers: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">headers</span><span class="si">}</span><span class="s2">"</span>
+  <span class="nb">puts</span> <span class="s2">"Response body: </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">body</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Deletes a product for the current business. </p>
+
+<aside class="warning">
+This action is permanent.
+</aside>
+
+<h3 id="try-it-out-in-swagger">Try it out in Swagger:</h3>
+
+<p><a href="https://my.smartmenu.io/swagger/#!/products/deleteProduct"><code class="prettyprint">DELETE https://my.smartmenu.io/api/v2/products/:id</code></a></p>
+
+<h3 id="code-examples">Code examples:
+<p><a href="http://restunited.com/docs/5blsoeb1bwhd#httpmethod_Web_deleteProduct"><code class="prettyprint">DELETE https://my.smartmenu.io/api/v2/products/:id</code></a></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">*</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">The ID.</td>
+</tr>
+</tbody></table>
+
+<h1 id="other-products-actions">Other Products Actions</h1>
+
+<h2 id="assign-a-tag-to-a-product">Assign a Tag to a Product</h2>
+<pre class="highlight shell"><code>curl /api/v2/products/71/tags/2 <span class="se">\</span>
+  --request POST <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept: application/json; charset=utf-8'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another German Potato Soup"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corrected info and description."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"With fresh basil leaves and a pinch of curry."</span><span class="p">,</span><span class="w">
+    </span><span class="err">[...]</span><span class="w">
+    </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spicy"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spicy dish"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"allergy_codes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Assign Tags to a product using their IDs. You can pass one more tags</p>
+
+<h3 id="http-method">HTTP Method</h3>
+
+<p><code class="prettyprint">POST</code></p>
+
+url-parameters&quot;>URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">*</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">The ID.</td>
+</tr>
+<tr>
+<td style="text-align: center">*</td>
+<td style="text-align: left">tag_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the Tags this product has been tagged with (comma separated).</td>
+</tr>
+</tbody></table>
+
+<h2 id="assign-an-allergy-to-a-product">Assign an allergy to a Product</h2>
+<pre class="highlight shell"><code>curl /api/v2/products/71/allergies/2 <span class="se">\</span>
+  --request POST <span class="se">\</span>
+  --header <span class="s1">'Authorization: smartmenu.signed.token'</span> <span class="se">\</span>
+  --header <span class="s1">'Accept: application/json; charset=utf-8'</span> <span class="se">\</span>
+  --verbose
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another German Potato Soup"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corrected info and description."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"With fresh basil leaves and a pinch of curry."</span><span class="p">,</span><span class="w">
+   </span><span class="err">[...]</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sesame seed"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sesame seed"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"allergy_codes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Assign Allergies to a product using their IDs. You can pass multiple allergies by separating the IDs with comma.</p>
+
+<h3 id="http-method">HTTP Method</h3>
+
+<p><code class="prettyprint">POST</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">*</td>
+<td style="text-align: left">allergy_ids</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">The IDs of the Allergies this product has been tagged with (comma separated).</td>
+</tr>
+<tr>
+<td style="text-align: center">*</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">The ID.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="errors">Errors</h1>
+
+<blockquote>
+<p>Errors look like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NoObjectError"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">404</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No existing product for the given id: 13"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ValidationErrors"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name must be at the least 2 characters long"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>When querying the API you can be presented with the following errors:</p>
+
+<h3 id="api-errors">API Errors</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Error</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">401</code></td>
+<td><code class="prettyprint">UnauthorizedError</code></td>
+<td>Your API key is wrong, missing or invalid</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td><code class="prettyprint">ValidationErrors</code></td>
+<td>One or more of the required parameters are missing or invalid. See <code class="prettyprint">message</code> for more info.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td><code class="prettyprint">ObjectAlreadyExistsError</code></td>
+<td>The object already exists.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td><code class="prettyprint">InvalidTimeFrameError</code></td>
+<td>Indicates that the timeframe specified is invalid</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td><code class="prettyprint">AssociationExistsError</code></td>
+<td>Indicates that the entities are already associated (e.g. a <code class="prettyprint">menu</code> and a <code class="prettyprint">product</code>)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">404</code></td>
+<td><code class="prettyprint">NoObjectError</code></td>
+<td>The specified entity (e.g. <code class="prettyprint">product</code>) does not exist.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">429</code></td>
+<td><code class="prettyprint">TooManyRequestsError</code></td>
+<td>You&rsquo;ve sent too many requests in the past hour. See <a href="#rate-limits-and-throttling">Rate-Limits</a>.</td>
+</tr>
+</tbody></table>
+
+<h3 id="server-errors">Server errors</h3>
+
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">400 Bad Request</code></td>
+<td>Your request sucks</td>
+</tr>
+<tr>
+<td><code class="prettyprint">405 Method Not Allowed</code></td>
+<td>The method is not supported.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">406 Not Acceptable</code></td>
+<td>You requested a format that isn&rsquo;t JSON</td>
+</tr>
+<tr>
+<td><code class="prettyprint">500 Internal Server Error</code></td>
+<td>Well this is embarrassing. Let us know what happened!</td>
+</tr>
+<tr>
+<td><code class="prettyprint">503 Service Unavailable</code></td>
+<td>We&rsquo;re temporarily offline for maintenance or we&rsquo;re experiencing capacity problems.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
